@@ -75,6 +75,29 @@ Também podemos rodar o mongod como serviço, neste caso o usuário padrão e o 
 sudo service mongod start
 ```
 
+**Fedora 23 64 bits**
+
+Adicionando o repositório:
+```
+ dnf config-manager --add-repo https://repo.mongodb.org/yum/redhat/7/mongodb-org/3.2/x86_64/
+ 
+
+```
+
+Instalando o mongodb:
+```
+dnf install mongodb-org --nogpgcheck
+```
+
+Pode executar o mongod que verá o mongo rodando no seu terminal, control+C para sair.
+```
+mongod
+```
+O arquivo */etc/mongod.conf* contém a configuração padrão do mongod.
+Também podemos rodar o mongod como serviço, neste caso o usuário padrão e o mongod e o diretório dos dados será em */var/lib/mongo* , os logs ficarão em */var/log/mongodb*
+```
+sudo service mongod start
+```
 
 Caso você use RedHat ou CentOS siga esses passos: [http://docs.mongodb.org/manual/tutorial/install-mongodb-on-red-hat/](http://docs.mongodb.org/manual/tutorial/install-mongodb-on-red-hat/)
 
