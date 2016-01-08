@@ -4,8 +4,58 @@
 
 O [mongo-hacker](https://github.com/TylerBrock/mongo-hacker) é uma extensão para seu terminal que adiciona algumas funcionalidades a mais, como por exemplo *syntax highlighter*, vou mostrar como é no meu terminal:
 
-
 ![Visualização do terminal rodando o mongo-hacker](https://github.com/Webschool-io/be-mean-instagram/raw/master/Apostila/module-mongodb/images/mongo-hacker-terminal.png)
+
+## Instalação#
+
+
+### Linux
+
+Intalando o git. no ubuntu e Debian, funciona também nos derivados.
+
+```
+sudo apt-get install git -y
+
+```
+
+Intalando o git. no fedora 23
+
+```
+sudo dnf install git -y
+
+```
+
+Clonando o projeto mongo-hacker que pertence TylerBlock.
+
+
+```
+git clone https://github.com/TylerBrock/mongo-hacker
+
+```
+
+Algumas vezes no distro que está utilizando (Sistema Operacional) não vem instalado o gcc e g++ que são dependencias necessarias na instalação, vamos instalar.
+
+No Ubuntu / Debian  (e derivados).
+
+```
+sudo apt-get install gcc g++ -y
+
+```
+
+No Fedora 23.
+
+```
+sudo dnf install gcc g++ -y
+
+```
+
+Após a instalação do gcc e g++ vamos instalar o mongo-hacker.
+
+```
+cd mongo-hacker/
+sudo make install
+
+```
 
 ### Database
 
