@@ -80,13 +80,13 @@ sudo service mongod start
 Adicionando o repositório:
 ```
  dnf config-manager --add-repo https://repo.mongodb.org/yum/redhat/7/mongodb-org/3.2/x86_64/
- dnf install mongodb-org --nogpgcheck
+ 
 
 ```
 
 Instalando o mongodb:
 ```
-dnf install  -y mongodb-org-3.2.0 mongodb-org-server-3.2.0 mongodb-org-shell-3.2.0 mongodb-org-mongos-3.2.0 mongodb-org-tools-3.2.0
+dnf install mongodb-org --nogpgcheck
 ```
 
 Pode executar o mongod que verá o mongo rodando no seu terminal, control+C para sair.
