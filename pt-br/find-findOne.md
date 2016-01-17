@@ -294,3 +294,38 @@ E podemos usar **REGEX** para trazer todos os pokemons que não possuam o nome `
 var query = { name : { $not : /pikachu/i } }
 db.pokemons.find(query)
 ```
+
+Usando o conhecimento sobre $and, $gte,$lt podemos realizar busca de datas.
+
+Exemplo: Gostaria de puxar todos cadastros de pokemon que foram criado em 17/01/2016 cuja o pokemon seja 'Bulbassauro' .
+
+Inserindo dados na coleção.
+
+
+```
+var pokemons = {'name':'Bulbassauro','description':'Chicote de trepadeira','type': 'grama', 'attack': 49, height: 0.4, created_at: new Date()};
+
+db.pokemons.insert(pokemons);
+
+WriteResult({ "nInserted" : 1 })
+
+```
+Depois da inserção buscaremos o campo created_at, que consta a data da criação do documento.
+
+```
+> var query = {$and: [{created_at: {$gte: new Date(2016, 0, 17), $lt: new Date(2016, 0, 18)}},{name:'Bulbassauro'}]};
+
+> db.pokemons.find(query).pretty();
+{
+	"_id" : ObjectId("569bb4441b2a879aee8fb0f1"),
+	"name" : "Bulbassauro",
+	"description" : "Chicote de trepadeira",
+	"type" : "grama",
+	"attack" : 49,
+	"height" : 0.4,
+	"created_at" : ISODate("2016-01-17T15:33:14.893Z")
+}
+
+```
+
+
