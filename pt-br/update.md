@@ -280,6 +280,8 @@ WriteResult({
 
 ### $pushAll
 
+[DEPRECIADO](https://docs.mongodb.org/v3.0/reference/operator/update/pushAll/) (Usar [$each](### $each))
+
 O operador `$pushAll` adiciona cada valor do `[Array_de_valores]`, caso o **campo seja um *Array* existente**. Caso **não exista irá criar o campo novo, do tipo *Array* com o valor passado** no `$pushAll`.
 Caso o **campo exista e não for um *Array*, irá retornar um erro**.
 
@@ -326,6 +328,55 @@ db.pokemons.find(query)
   ]
 }
 ```
+
+### $each
+
+O modificador `$each` pode ser usado com `$addToSet` e com o operador `$push`. Como o operador `$pushAll` foi depreciado, agora utiliza-se `$each` para adicionar multiplos valores.  
+
+#### Sintaxe 
+
+```
+{ $push : { campo : {$each: [Array_de_valores] } } }
+```
+
+#### Uso
+
+Vamos adicionar 3 novos ataques ao Pikachu, para isso criamos um *Array* para seus valores e logo após passamos ele para o `$push`:
+
+```
+var attacks = ['choque elétrico', 'ataque rápido', 'bola elétrica']
+var mod = {$push : {moves : {$each: attacks} } }
+db.pokemons.update(query, mod)
+
+Updated 1 existing record(s) in 29ms
+WriteResult({
+  "nMatched": 1,
+  "nUpserted": 0,
+  "nModified": 1
+})
+
+```
+Vamos conferir a modificação.
+
+```
+db.pokemons.find(query)
+{
+  "_id": ObjectId("56422c36613f89ac53a7b5d5"),
+  "name": "Pikachu",
+  "description": "Rato elétrico bem fofinho",
+  "type": "eletric",
+  "attack": 55,
+  "height": 0.4,   
+  "moves": [
+    "investida",
+    "choque do trovão",
+    "choque elétrico",
+    "ataque rápido",
+    "bola elétrica"
+  ]
+}
+```
+
 
 ### $pull
 
