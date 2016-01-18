@@ -331,7 +331,7 @@ db.pokemons.find(query)
 
 ### $each
 
-O modificador `$each` pode ser usado com `$addToSet` e com o operador `$push`. Como o operador `$pushAll` foi depreciado, agora utiliza-se `$each` para adicionar multiplos valores.  
+O modificador `$each` pode ser usado com `$addToSet` e com o operador `$push`. Como o operador `$pushAll` foi depreciado, agora utiliza-se `$each` para adicionar multiplos valores ao campo.  
 
 #### Sintaxe 
 
