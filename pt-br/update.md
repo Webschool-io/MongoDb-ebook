@@ -280,7 +280,7 @@ WriteResult({
 
 ### $pushAll
 
-[DEPRECIADO](https://docs.mongodb.org/v3.0/reference/operator/update/pushAll/) (Usar [$each](### $each))
+[DEPRECIADO](https://docs.mongodb.org/v3.0/reference/operator/update/pushAll/) (Usar [$each](#each))
 
 O operador `$pushAll` adiciona cada valor do `[Array_de_valores]`, caso o **campo seja um *Array* existente**. Caso **não exista irá criar o campo novo, do tipo *Array* com o valor passado** no `$pushAll`.
 Caso o **campo exista e não for um *Array*, irá retornar um erro**.
