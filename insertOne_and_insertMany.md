@@ -7,9 +7,9 @@ Com o novo lançamento do [MongoDb 3.2](https://docs.mongodb.org/manual/), vou at
 Estarei abordando direto o assunto me assegurando que conheçam o basico. Caso contrario segue a documentação detalhada do assunto [aqui](https://docs.mongodb.org/manual/reference/method/db.collection.insertOne/#definition) e o Curso [Be-Mean](https://www.youtube.com/watch?v=leYxsEAL_yY) gratuito.
 
 
-**inserOne()**
+##inserOne()
 
-O inserOne como o proprio nome ja diz insere um documento em uma coleção. O metodo tem a seguinte sintaxe:
+O `inserOne()` como o proprio nome ja diz insere um documento em uma coleção. O metodo tem a seguinte sintaxe:
 
 ```js
 db.collection.insertOne(
@@ -21,8 +21,9 @@ db.collection.insertOne(
 ```
 
 - document -> Um documento para inserir na coleção.
-- writeConcern -> Opcional. Podemos passar parametro ```{ writeConcern: { w : "majority", wtimeout : 100 } }; ``` para a gravação do documento, caso exceda o limite de tempo **wtimeout** é retornado um `exception thrown` como no exemplo mesmo que a gravação e executada com sucesso: 
+- writeConcern -> Opcional. Podemos passar parametro ```{ writeConcern: { w : "majority", wtimeout : 100 } }; ``` para a gravação do documento, caso exceda o limite de tempo **wtimeout** é retornado um `exception thrown` como no exemplo abaixo e mesmo que a gravação é executada com sucesso: 
 
+**exemplo**
 ```
 WriteConcernError({
    "code" : 64,
@@ -34,6 +35,8 @@ WriteConcernError({
 ```
 
 ###Exemplo insertOnde()
+
+**exemplo**
 ```js
 db.collection.insertOne( { item: "card", qty: 15 } );
 ```
@@ -49,10 +52,9 @@ A operação retorna o seguinte documento, é claro que se expecificar o `_id` será
 }
 ```
 
+###InsertMany()
 
-**InsertMany()**
-
-Para o `insertMany` iremos inserir alguns documentos utilizando insertOne() para prosseguir com a explicação.
+Para o `insertMany()` iremos inserir alguns documentos utilizando insertOne() para prosseguir com a explicação.
 
 Crie um dataBase **teste**, podemos criar utilizando o comando `use teste` ou  qualquer nome que desejar.
 
@@ -175,6 +177,8 @@ BulkWriteError({
         "upserted" : [ ]
 })
 ```
+
+Com o seguinte comando podemos excluir a coleção criada nesse post `db.mycollection.drop()` ou  se você criou ontra coleção `db.nome_colecao.drop()`. 
 
 Por enquanto é só!!!
 
