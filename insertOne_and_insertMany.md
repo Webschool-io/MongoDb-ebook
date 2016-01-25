@@ -136,7 +136,7 @@ db.mycollection.insertMany(
 );
 ```
 
-Pronto!!!
+**Pronto!!!**
 
 Acabamos de inserir os documento de forma não ordenada `{ "ordered": false }`, mesmo com valores duplicados o mongo continua inserindo os documentos.
 
@@ -184,7 +184,7 @@ Por enquanto é só!!!
 
 ## Referências
 
-1 - [University MongoDB, Curso MongoDB e NodeJS](https://university.mongodb.com/courses)
+1 - [University MongoDB, Curso MongoDB e NodeJS](https://university.mongodb.com/courses); <br/>
 2 - [Documentação MongoDB](https://docs.mongodb.org/manual/)
 
 
