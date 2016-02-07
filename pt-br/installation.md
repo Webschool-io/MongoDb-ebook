@@ -10,7 +10,7 @@ Depois basta descompactar e rodar.
 
 ### Linux
 
-![Meme do Linux](https://raw.githubusercontent.com/Webschool-io/be-mean-instagram/master/Apostila/module-mongodb/images/meme-linux.jpg)
+![Meme do Linux](../src/images/meme-linux.jpg)
 
 Quem usa Linux do tipo Ubuntu da vida, como o Debian por exemplo, pode instalar via `apt-get` seguindo esses passos, caso o seu sistema seja 64 bits. Primeiro, para garantir a autenticidade e consistencia dos pacotes do MongoDb:
 
@@ -33,7 +33,7 @@ echo "deb http://repo.mongodb.org/apt/ubuntu trusty/mongodb-org/3.0 multiverse" 
 Ubuntu 15:
 
 ```
-echo "deb http://repo.mongodb.org/apt/debian wheezy/mongodb-org/3.0 main" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.0.list
+echo "deb http://repo.mongodb.org/apt/debian wheezy/mongodb-org/3.0 main" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.0.list"
 ```
 
 Por fim, rodar o comando:
@@ -75,40 +75,17 @@ Também podemos rodar o mongod como serviço, neste caso o usuário padrão e o 
 sudo service mongod start
 ```
 
-**Fedora 23 64 bits**
-
-Adicionando o repositório:
-```
- dnf config-manager --add-repo https://repo.mongodb.org/yum/redhat/7/mongodb-org/3.2/x86_64/
- 
-
-```
-
-Instalando o mongodb:
-```
-dnf install mongodb-org --nogpgcheck
-```
-
-Pode executar o mongod que verá o mongo rodando no seu terminal, control+C para sair.
-```
-mongod
-```
-O arquivo */etc/mongod.conf* contém a configuração padrão do mongod.
-Também podemos rodar o mongod como serviço, neste caso o usuário padrão e o mongod e o diretório dos dados será em */var/lib/mongo* , os logs ficarão em */var/log/mongodb*
-```
-sudo service mongod start
-```
 
 Caso você use RedHat ou CentOS siga esses passos: [http://docs.mongodb.org/manual/tutorial/install-mongodb-on-red-hat/](http://docs.mongodb.org/manual/tutorial/install-mongodb-on-red-hat/)
 
 ### Mac
 
-![Meme do Mac](https://raw.githubusercontent.com/Webschool-io/be-mean-instagram/master/Apostila/module-mongodb/images/meme-mac.jpg)
+![Meme do Mac](../src/images/meme-mac.jpg)
 
 Quem usa Mac pode instalar via [brew](http://brew.sh/) e para instalar o brew é bem fácil basta executar esse comando no seu terminal:
 
 ```
-ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+ruby -e "$(curl -fsSL https://macgithubusercontent.com/Homebrew/install/master/install)"
 ```
 
 Depois basta executar o comando de `update` do `brew`:
@@ -127,7 +104,7 @@ Também tem um vídeo muito bom enviado por um aluno: [003 Installing MongoDB on
 
 ### Windows
 
-![Meme do Mac](https://raw.githubusercontent.com/Webschool-io/be-mean-instagram/master/Apostila/module-mongodb/images/meme-windows.jpg)
+![Meme do Windows](../src/images/meme-windows.jpg)
 
 Por incrível que pareça é bem simples no Windows, um aluno meu escreveu esse rtigo que pode lhe ajudar [https://pablojuancruz.wordpress.com/2014/09/03/configurando-ambiente-mongodb-no-windows/](https://pablojuancruz.wordpress.com/2014/09/03/configurando-ambiente-mongodb-no-windows/).
 
