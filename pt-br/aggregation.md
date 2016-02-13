@@ -20,37 +20,38 @@ A melhor definição de [**Pipeline**](https://docs.mongodb.org/manual/core/aggr
 
 Temos a seguinte leitura na imagem acima:
 
-Obtemos os documentos da nossa coleção e em seguida temos as fases `stages` de cada um dos quais realiza a operação de cada entrada. Para cada fase temos uma modificação na nossa saida dos documentos. É **importante planejar** cada fase para que possamos realmente obter os documentos desejados.
+Obtemos os documentos da nossa coleção e em seguida temos as fases `stages` de cada um dos quais realiza a operação de cada entrada. Para cada fase temos uma modificação na nossa saída dos documentos. É **importante planejar** cada fase para que possamos realmente obter os documentos desejados.
 
-Explicarei melhor com exemplos mais adiante para entendermos sobre o que podemos ter em cada stages e facilitar nosso dia a dia. 
+Explicarei melhor com exemplos, logo em seguida e para entendermos sobre o que podemos ter em cada **stages** e facilitar nosso dia a dia. 
 
-Como estou fazendo o curso [Be-mean](https://www.youtube.com/watch?v=leYxsEAL_yY), estarei usando o banco be-mean e a coleção pokemons para prosseguir com os exemplos. 
-Então para uma melhor aprendizagem aconselho seguir esses passos abaixo:
+Como estou fazendo o curso [Be-mean](https://www.youtube.com/watch?v=leYxsEAL_yY), usarei o banco **be-mean** e a coleção **pokemons** para prosseguir com os exemplos. 
+Então para uma melhor aprendizagem sugiro seguir esses passos abaixo:
 
-- Importar o arquivo [json aqui](https://github.com/Webschool-io/MongoDb-ebook/blob/master/src/data/pokemons.json) para o banco be-mean. Puts, mas eu não sei como vou fazer para importar esses arquivos para o meu mongodb. Segue esse [video](https://www.youtube.com/watch?v=1eHc8reT_Vk) em 2:03 minutos de video o Professor [William Bruno]( https://github.com/wbruno ) pode te ajudar, é logico que tenha o mongodb instalado. Caso ainda não instalou siga essa [documentação](https://docs.mongodb.org/manual/tutorial/install-mongodb-on-ubuntu/) para instalar em seu S.O.
+- Importar o arquivo [json aqui](https://github.com/Webschool-io/MongoDb-ebook/blob/master/src/data/pokemons.json) para o banco be-mean. Puts, mas eu não sei como vou fazer para importar esses arquivos para o meu mongodb. Segue esse [vídeo](https://www.youtube.com/watch?v=1eHc8reT_Vk) em 2:03 minutos de video o professor [William Bruno]( https://github.com/wbruno ) pode te ajudar, é lógico, se você estiver com o mongodb instalado. Caso ainda não instalou siga essa [documentação](https://docs.mongodb.org/manual/tutorial/install-mongodb-on-ubuntu/) para instalar em seu S.O.
 
 
 ###Banco Relacional - ordem lógica de execução
 
 Como estou vindo do banco relacional, primeiramente vale lembrar de como o banco de dados relacional trabalha em relação a ordem lógica de execução.
 
-Mas o que tem haver a ordem lógica de execução do banco relacional com `aggregation` do mongodb?
+Mas o que tem a ver a ordem lógica de execução do banco relacional com `aggregation` do mongodb?
 
 Muita calma nessa hora, o que eu quero mostrar é a ordem da estrutura no mongodb, onde dependendo do posicionamento dos operadores `$limit`, `$skip` e `$sort` o resultado pode não ser o esperado. 
 
 **Ordem lógica de execução**
+
 ![](http://4.bp.blogspot.com/-1f9bRPl9YA8/UDTDQ8eJaFI/AAAAAAAAAGY/6G8iMVTJDtg/s1600/post4.png)
 
-Na imagem acima, temos a ordem lógica de execução em um banco de dados SQL SERVER. Vale lembrar que esse é o modelo padrao da estrutura sql que utilizo normalmente no relacional. Pode ser que seja a mesma estrutura em outros bancos como MySql, Postgres, DB2 e etc.
+Na imagem acima, temos a ordem lógica de execução em um banco de dados SQL SERVER. Vale lembrar que esse é o modelo padrão da estrutura sql que utilizo normalmente no relacional. Temos a mesma estrutura em outros bancos como MySql, Postgres, DB2 e etc.
 
 
 ##Aggregation Operators
-**ou operadores de agregação**
+ou **`operadores de agregação`**
 
 Iremos conhecer os operadores que podem fazer parte do método `aggregate`.
 
 ###$match 
-Filtra os documentos que correspondem à condição especificada, para seguir no `stages` do pipeline seguinte. Nada mais é que o método **find()**.
+Filtra os documentos que correspondem à condição especificada, para seguir no `stages` do pipeline seguinte. O **`$match`** nada mais é que o método **find()**.
 
 **exemplo:**
 ```js
@@ -58,7 +59,7 @@ db.pokemons.aggregate([
         {$match: {speed: {$gte: 40}}}
 ])
 ```
-Estamos utilizando o método **aggregate** e realizando um `find` com o operador $match, onde irá retornar da nossa coleção pokemons, todos pokemons onde o speed e maior ou igual 40.
+Estamos utilizando o método **aggregate** e realizando um `find` com o operador `$match`, onde irá retornar da nossa coleção pokemons, todos pokemons onde o `speed` é maior ou igual 40.
 
 ###$project
 Se quisermos informar os campos que queremos na nossa saida dos dados `output`. Vale ressaltar que estamos adicionando mais uma etapa na nossa `stages`.
@@ -74,7 +75,7 @@ db.pokemons.aggregate([
         }}
 ])
 ```
-Nesse caso o `_id` não será apresentado em nossa saida, apenas os nomes dos `pokemons` e `speed` utilizando o método de agregação.
+Nesse caso o `_id` não será apresentado em nossa saída, apenas os nomes dos `pokemons` e `speed` utilizando o método de agregação.
 
 
 ###$limit
@@ -91,7 +92,7 @@ db.pokemons.aggregate([
         }}
 ])
 ```
-Obtemos a quantidade de 5 documentos no processo de cada `stages` no pipeline. Apresentando na saida apenas os nomes dos pokemons.
+Obtemos a quantidade de 5 documentos no processo de cada `stages` no pipeline. Apresentando na saída apenas os nomes dos pokemons.
 
 Podemos perceber que podemos trocar a ordem de cada `stages`, como o exemplo abaixo:
 ```js
@@ -104,7 +105,7 @@ db.pokemons.aggregate([
         {$limit: 5}
 ])
 ```
-Temos o mesmos documentos do exemplo anterior. Mas cuidado dependendo os operadores utilizado os resultados não será o mesmo.
+Temos o mesmos documentos do exemplo anterior. Mas cuidado dependendo dos operadores utilizados os resultados não serão os mesmos.
 
 ###$sort
 Ordena os documentos de acordo com a classificação de entrada. onde:
@@ -125,9 +126,9 @@ db.pokemons.aggregate([
 ```
 Nesse caso estamos ordenando os documentos, onde `name` em ordem crescente e `speed` em ordem decrescente.
 
-No exemplo abaixo iremos trocar o **$sort** no lugar do **$limit**. Podemos perceber que os documentos não é o mesmo. 
+No exemplo abaixo iremos trocar o **$sort** no lugar do **$limit**. Podemos perceber que os documentos não são os mesmos. 
 
-**ATENÇÂO!!!** nem sempre os valores que queremos e conforme a ordem que aplicamos no metodo **aggregate**. Fiquem ligados na ordem de cada `stages`.
+**ATENÇÃO!!!**, nem sempre os valores que queremos é conforme a ordem que aplicamos no método **aggregate**. Fiquem ligados na ordem de cada `stages`.
 
 ```js
 db.pokemons.aggregate([
@@ -157,11 +158,11 @@ db.pokemons.aggregate([
         }}
 ])
 ```
-Adicionamos mais um operador em nossa `stages` para ignorar o numero de documentos especificados no método `aggregate`. Nesse caso ele **`$skip`** ignorou os 5 primeros documentos no processo do pipeline. Perceba que temos cinco `stages` para o filtro na nossa coleção pokemons, `$match (find())` , `$sort`, `$skip`, `$limit`, e `$project` . 
+Adicionamos mais um operador em nossa `stages` para ignorar o número de documentos especificados no método `aggregate`. Nesse caso o **`$skip`** ignorou os 5 primeros documentos no processo do pipeline. Perceba que temos cinco `stages` para o filtro na nossa coleção pokemons, `$match === find()` , `$sort`, `$skip`, `$limit`, e `$project` . 
 
 
 ##$group
-É o agrupamendo de documentos por alguma expressão especificada e saídas para a próxima fase de um documento para cada grupo distinto.
+É o agrupamento de documentos por alguma expressão especificada e saída para a próxima fase de um documento para cada grupo distinto.
 
 **exemplo:**
 ```js
@@ -178,14 +179,19 @@ db.pokemons.aggregate(
 ```
 Apenas para exemplificar o uso do `$group` no método **aggregate**.
 
-A imagem abaixo temos um melhor entendimento no que se refere ao metodo aggregate. 
+A imagem abaixo temos um melhor entendimento no que se refere ao método aggregate. 
 ![](https://docs.mongodb.org/manual/_images/aggregation-pipeline.png)
 
 
 ##Relacional vs. mongodb
 Percebam que temos no relacional uma estrutura onde não podemos trocar de lugares conforme as `stages` da estrutura do mongodb.
 Fora que no mongoDB podemos trabalhar com [Embedded Documents](https://docs.mongodb.org/v3.0/tutorial/model-embedded-one-to-many-relationships-between-documents/) de One-to-Many ou One-to-One. 
-No banco relacional precisariamos usar JOIN entre varias tabelas.
+No banco relacional precisaríamos usar JOIN entre várias tabelas.
+
+##Performace
+Pessoal, em outro post falarei sobre a criação de [INDEX](https://docs.mongodb.org/manual/tutorial/create-an-index/) no mongodb, para obter uma melhor performance ao utilizar uma busca. 
+
+É isso aí e até a próxima!!!!
 
 
 ##Referências
