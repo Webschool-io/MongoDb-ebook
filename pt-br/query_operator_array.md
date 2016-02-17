@@ -17,8 +17,8 @@ retorna os documentos de acordo com a especificação do tipo indicado.
 **Tipos disponíveis**</br>
 *Alterado na versão 3.2:* o operador `$type` aceita aliases de String para os tipos BSON além dos números correspondentes aos tipos BSON. As versões anteriores só aceitou os números correspondentes ao tipo BSON.
 
-|         Type               |        Number       |        Alias          |    Notes          |
-| -------------------------- | ------------------- | --------------------- | ----------------: |
+|         Type               |        Number       |        Alias          |       Notes       |
+| -------------------------- | ------------------- | --------------------- | ----------------- |
 | Double                     |          1          |       “double”        |                   |
 | String                     |          2          |       “string”        |                   |
 | Object                     |          3          |       “object”        |                   |
