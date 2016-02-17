@@ -14,31 +14,31 @@ Primeiramente iremos fazer uma consulta por tipo de dados.
 retorna os documentos de acordo com a especificação do tipo indicado.
 
 
-**Tipos disponíveis**
+**Tipos disponíveis**</br>
 *Alterado na versão 3.2:* o operador `$type` aceita aliases de String para os tipos BSON além dos números correspondentes aos tipos BSON. As versões anteriores só aceitou os números correspondentes ao tipo BSON.
 
-|         Type               |        Number       |        Alias          |        Notes          |
-| -------------------------- | ------------------- | --------------------- | --------------------: |
-| Double                     |          1          |       “double”        |                       |
-| String                     |          2          |       “string”        |                       |
-| Object                     |          3          |       “object”        |                       |
-| Array                      |          4          |       “array”         |                       |
-| Binary data                |          5          |       “binData”       |                       |
-| Undefined                  |          6          |       “undefined”     |      Deprecated.      | 
-| Object id                  |          7          |       “objectId”      |                       |
-| Boolean                    |          8          |       “bool”          |                       |
-| Date                       |          9          |       “date”          |                       |
-| Null                       |          10         |       “null”          |                       |
-| Regular Expression         |          11         |       “regex”         |                       |
-| DBPointer                  |          12         |       “dbPointer”     |                       |
-| JavaScript                 |          13         |       “javascript”    |                       |
-| Symbol                     |          14         |       “symbol”        |                       |
-| JavaScript (with scope)    |          15         | “javascriptWithScope” |                       |
-| 32-bit integer             |          16         |       “int”           |                       |
-| Timestamp                  |          17         |       “timestamp”     |                       |
-| 64-bit integer             |          18         |       “long”          |                       |
-| Min key                    |         -1          |       “minKey”        |                       |
-| Max key                    |          127        |       “maxKey”        |                       |
+|         Type               |        Number       |        Alias          |    Notes          |
+| -------------------------- | ------------------- | --------------------- | ----------------: |
+| Double                     |          1          |       “double”        |                   |
+| String                     |          2          |       “string”        |                   |
+| Object                     |          3          |       “object”        |                   |
+| Array                      |          4          |       “array”         |                   |
+| Binary data                |          5          |       “binData”       |                   |
+| Undefined                  |          6          |       “undefined”     |      Deprecated.  | 
+| Object id                  |          7          |       “objectId”      |                   |
+| Boolean                    |          8          |       “bool”          |                   |
+| Date                       |          9          |       “date”          |                   |
+| Null                       |          10         |       “null”          |                   |
+| Regular Expression         |          11         |       “regex”         |                   |
+| DBPointer                  |          12         |       “dbPointer”     |                   |
+| JavaScript                 |          13         |       “javascript”    |                   |
+| Symbol                     |          14         |       “symbol”        |                   |
+| JavaScript (with scope)    |          15         | “javascriptWithScope” |                   |
+| 32-bit integer             |          16         |       “int”           |                   |
+| Timestamp                  |          17         |       “timestamp”     |                   |
+| 64-bit integer             |          18         |       “long”          |                   |
+| Min key                    |         -1          |       “minKey”        |                   |
+| Max key                    |          127        |       “maxKey”        |                   |
 
 **$type** suporta o número de alias, que irá corresponder contra os seguintes tipos BSON:
 
