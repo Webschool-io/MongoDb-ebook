@@ -1,15 +1,15 @@
 # MongoDB
 
-## Insert - InsertOne e InserMany
+## Insert - InsertOne e InsertMany
 
-Com o novo lançamento do [MongoDB 3.2](https://docs.mongodb.org/manual/), vou atualizar aqui falando um pouco do `insertOne()` e `insertMany()` novos recursos disponivéis na ferramenta, entre outros que possivelmente abordarei em outros posts. 
+Com o novo lanÃ§amento do [MongoDB 3.2](https://docs.mongodb.org/manual/), vou atualizar aqui falando um pouco do `insertOne()` e `insertMany()` novos recursos disponivÃ©is na ferramenta, entre outros que possivelmente abordarei em outros posts. 
 
-Estarei abordando direto o assunto, me assegurando que conheçam o básico. Caso contrário segue a documentação detalhada do assunto [aqui](https://docs.mongodb.org/manual/reference/method/db.collection.insertOne/#definition) e o Curso [Be-Mean](https://www.youtube.com/watch?v=leYxsEAL_yY) gratuito.
+Estarei abordando direto o assunto, me assegurando que conheÃ§am o bÃ¡sico. Caso contrÃ¡rio segue a documentaÃ§Ã£o detalhada do assunto [aqui](https://docs.mongodb.org/manual/reference/method/db.collection.insertOne/#definition) e o Curso [Be-Mean](https://www.youtube.com/watch?v=leYxsEAL_yY) gratuito.
 
 
-##inserOne()
+##insertOne()
 
-O `inserOne()` como o próprio nome já diz insere um documento em uma coleção. O método tem a seguinte sintaxe:
+O `insertOne()` como o prÃ³prio nome jÃ¡ diz insere um documento em uma coleÃ§Ã£o. O mÃ©todo tem a seguinte sintaxe:
 
 ```js
 db.collection.insertOne(
@@ -20,8 +20,8 @@ db.collection.insertOne(
 )
 ```
 
-- document -> Um documento para inserir na coleção;
-- writeConcern -> (Opcional). Podemos passar parâmetro ```{ writeConcern: { w : "majority", wtimeout : 100 } }; ``` para a gravação do documento, caso exceda o limite de tempo **wtimeout** é retornado um `exception thrown`, como no exemplo abaixo, mesmo executado o insert com sucesso: 
+- document -> Um documento para inserir na coleÃ§Ã£o;
+- writeConcern -> (Opcional). Podemos passar parÃ¢metro ```{ writeConcern: { w : "majority", wtimeout : 100 } }; ``` para a gravaÃ§Ã£o do documento, caso exceda o limite de tempo **wtimeout** Ã© retornado um `exception thrown`, como no exemplo abaixo, mesmo executado o insert com sucesso: 
 
 **exemplo:**
 ```
@@ -34,14 +34,14 @@ WriteConcernError({
 })
 ```
 
-###Exemplo insertOnde()
+###Exemplo insertOne()
 
 **exemplo:**
 ```js
 db.collection.insertOne( { item: "card", qty: 15 } );
 ```
 
-A operação retorna o seguinte documento:
+A operaÃ§Ã£o retorna o seguinte documento:
 ```js
 {
    "acknowledged" : true,
@@ -50,7 +50,7 @@ A operação retorna o seguinte documento:
    ]
 }
 ```
-obs: se você setar o valor do `_id`, exemplo `{"_id": 1}` sua resposta será:
+obs: se vocÃª setar o valor do `_id`, exemplo `{"_id": 1}` sua resposta serÃ¡:
 ```js
 {
    "acknowledged" : true,
@@ -62,11 +62,11 @@ obs: se você setar o valor do `_id`, exemplo `{"_id": 1}` sua resposta será:
 
 ###InsertMany()
 
-Para o `insertMany()` iremos inserir alguns documentos utilizando insertOne() para prosseguir com a explicação.
+Para o `insertMany()` iremos inserir alguns documentos utilizando insertOne() para prosseguir com a explicaÃ§Ã£o.
 
 Crie um dataBase **teste**, podemos criar utilizando o comando `use teste` ou  qualquer nome que desejar.
 
-Para que confirme essa criação, insirá os documentos abaixo, apenas, copie e cole no seu terminal:
+Para que confirme essa criaÃ§Ã£o, insirÃ¡ os documentos abaixo, apenas, copie e cole no seu terminal:
 
 ```js
 db.mycollection.insertOne({ "_id" : "tt0084726", "title" : "Star Trek II: The Wrath of Khan", "year" : 1982, "type" : "movie" });
@@ -79,8 +79,8 @@ db.mycollection.insertOne({ "_id" : "tt1408101", "title" : "Star Trek Into Darkn
 Criamos nosso banco e inserimos alguns documentos, e com o seguinte comando `db.mycollection.find().pretty()` para exibi-los, pretty() apenas para deixar o resultado identado.
 
 
-Caso haja a necessidade de inserir varios documentos ao mesmo tempo em nossa coleção. 
-Poderíamos fazer o seguinte comando, copie e cole no seu terminal: 
+Caso haja a necessidade de inserir varios documentos ao mesmo tempo em nossa coleÃ§Ã£o. 
+PoderÃ­amos fazer o seguinte comando, copie e cole no seu terminal: 
 
 ```js
 db.mycollection.insertMany(
@@ -95,9 +95,9 @@ db.mycollection.insertMany(
 );
 ```
 
-Obs: note que temos dois `_id` duplicados existentes na nossa coleção, sendo eles **"_id" : "tt0084726"** e **"_id" : "tt0117731"**.
+Obs: note que temos dois `_id` duplicados existentes na nossa coleÃ§Ã£o, sendo eles **"_id" : "tt0084726"** e **"_id" : "tt0117731"**.
 
-Se você executou o comando, onde o **mongodbDB** age de forma ordenada é lógico que você recebeu o seguinte erro de chave duplicada:
+Se vocÃª executou o comando, onde o **mongodbDB** age de forma ordenada Ã© lÃ³gico que vocÃª recebeu o seguinte erro de chave duplicada:
 
 
 ```js
@@ -125,7 +125,7 @@ BulkWriteError({
 })
 ```
 
-Se eu tenho uma aplicação e sei que pode haver documentos duplicados, e mesmo assim gostaria de continuar inserindo os outros documentos não duplicados. Passaríamos mais um argumento chamado `ordered` setando como **false**, onde por default é **true**.
+Se eu tenho uma aplicaÃ§Ã£o e sei que pode haver documentos duplicados, e mesmo assim gostaria de continuar inserindo os outros documentos nÃ£o duplicados. PassarÃ­amos mais um argumento chamado `ordered` setando como **false**, onde por default Ã© **true**.
 
 Copie e cole o seguinte comando:
 
@@ -147,7 +147,7 @@ db.mycollection.insertMany(
 
 **Pronto!**
 
-Acabamos de inserir os documentos de forma não ordenada `{ "ordered": false }`, mesmo com valores duplicados o mongo continua inserindo os documentos.
+Acabamos de inserir os documentos de forma nÃ£o ordenada `{ "ordered": false }`, mesmo com valores duplicados o mongo continua inserindo os documentos.
 
 Podemos perceber que temos um retorno de erro e mesmo assim os documentos foram inseridos:
 
@@ -187,14 +187,14 @@ BulkWriteError({
 })
 ```
 
-Com o seguinte comando `db.mycollection.drop()` podemos excluir a coleção criada nesse post ou se você criou outra coleção, use`db.nome_colecao.drop()`. 
+Com o seguinte comando `db.mycollection.drop()` podemos excluir a coleÃ§Ã£o criada nesse post ou se vocÃª criou outra coleÃ§Ã£o, use`db.nome_colecao.drop()`. 
 
-Por enquanto é só!!!
+Por enquanto Ã© sÃ³!!!
 
-## Referências
+## ReferÃªncias
 
 1 - [University MongoDB, Curso MongoDB e NodeJS](https://university.mongodb.com/courses); <br/>
-2 - [Documentação MongoDB](https://docs.mongodb.org/manual/)
+2 - [DocumentaÃ§Ã£o MongoDB](https://docs.mongodb.org/manual/)
 
 
 
