@@ -12,7 +12,7 @@ Primeiramente iremos fazer uma consulta por tipo de dados.
 
 ###$types
 retorna os documentos de acordo com a especificação do tipo indicado.
-
+       
 
 **Tipos disponíveis**</br>
 *Alterado na versão 3.2:* o operador `$type` aceita aliases de String para os tipos BSON além dos números correspondentes aos tipos BSON. As versões anteriores só aceitou os números correspondentes ao tipo BSON.
