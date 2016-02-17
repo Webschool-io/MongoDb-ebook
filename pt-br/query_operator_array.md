@@ -13,10 +13,44 @@ Primeiramente iremos fazer uma consulta por tipo de dados.
 ###$types
 retorna os documentos de acordo com a especificação do tipo indicado.
 
+
+**Tipos disponíveis**
+*Alterado na versão 3.2:* o operador `$type` aceita aliases de String para os tipos BSON além dos números correspondentes aos tipos BSON. As versões anteriores só aceitou os números correspondentes ao tipo BSON.
+Type                              |        Number            |        Alias            |        Notes
+----------------------------    |   ------------------------ |   ------------------   |   --------------------:
+Double                          |            1                   |       “double”       |
+String                            |            2                   |        “string”        |
+Object                           |            3                   |        “object”       |
+Array                             |            4                   |        “array”        |
+Binary data                   |             5                  |         “binData”    |
+Undefined                     |             6                  |       “undefined”  |      Deprecated.
+Object id                       |             7                  |         “objectId”    |
+Boolean                        |             8                  |          “bool”         |
+Date                             |             9                  |          “date”         |
+Null                               |            10                 |          “null”          |
+Regular Expression       |            11                 |          “regex”      |
+DBPointer                     |             12                |         “dbPointer” |
+JavaScript                     |             13                |        “javascript”  |
+Symbol                         |             14                |        “symbol”       |
+JavaScript (with scope) |             15               |“javascriptWithScope”  |
+32-bit integer               |             16                |           “int”           |
+Timestamp                   |             17                |      “timestamp”  |
+64-bit integer               |             18                |          “long”         |
+Min key                        |              -1                |         “minKey”     |
+Max key                       |            127               |         “maxKey”    |
+
+**$type** suporta o número de alias, que irá corresponder contra os seguintes tipos BSON:
+
+- duplo
+- 32-bit inteiro
+- 64-bit inteiro
+
+Para mais informações, consulte a documentação [aqui](https://docs.mongodb.org/manual/reference/operator/query/type/).
+
 **exemplo:**
 ```js
-db.pokemons.find( { 
-	_id: { $type : 7 } 
+db.pokemons.find( {
+	_id: { $type : 7 }
 } ).pretty();
 ```
 Retornamos todos os documentos, onde o `_id` é do tipo **Object id**.
@@ -25,30 +59,30 @@ Podemos retornar também todos os documentos onde o campo `types` é do tipo **s
 
 **exemplo:**
 ```js
-db.pokemons.find( { 
-	types: { $type : 2 } 
+db.pokemons.find( {
+	types: { $type : 2 }
 } ).pretty();
 ```
 
 **ou** se você quer listar documentos em que o campo `types` é uma matriz, podemos usar o operador `$were`.
-db.pokemons.find({ 
-	$where : "Array.isArray(this.types)" 
+db.pokemons.find({
+	$where : "Array.isArray(this.types)"
 } ).count();
 
 
-###$all    
-Retorna todos os documentos onde o valor de um campo é uma matriz que contém um ou todos os elementos especificados. 
+###$all
+Retorna todos os documentos onde o valor de um campo é uma matriz que contém um ou todos os elementos especificados.
 
 **exemplo:**
 ```js
-db.pokemons.find( { 
-	types: { $all: [  "normal", "flying" ] } 
+db.pokemons.find( {
+	types: { $all: [  "normal", "flying" ] }
 } ).pretty()
 ```
-É retornado todos os documentos que possuem o `types` **normal** ou **flying**. 
+É retornado todos os documentos que possuem o `types` **normal** ou **flying**.
 
 
-Os próximos exemplos iremos utilizar o banco `restaurantes`. Segue o **[link](https://raw.githubusercontent.com/Webschool-io/MongoDb-ebook/master/src/data/restaurantes.json)** para copiar os documentos e importar no seu banco de dados mongodb. Siga os passos para a importação, conforme a orientação no começo desse post. 
+Os próximos exemplos iremos utilizar o banco `restaurantes`. Segue o **[link](https://raw.githubusercontent.com/Webschool-io/MongoDb-ebook/master/src/data/restaurantes.json)** para copiar os documentos e importar no seu banco de dados mongodb. Siga os passos para a importação, conforme a orientação no começo desse post.
 
 ###$elemMatch
 Retorna os documentos que contêm um campo de matriz com pelo menos um elemento que coincide com todos os critérios de consulta especificadas.
@@ -66,7 +100,7 @@ db.restaurantes.find({
 ```
 É retornado todos os documentos que possuem os valores especificados no método `find`.
 
-Poderiamos ter realizado essa simples consulta, talvez teriamos os mesmos resultado. 
+Poderiamos ter realizado essa simples consulta, talvez teriamos os mesmos resultado.
 ```js
 db.restaurantes.find({
 	grades:{
@@ -75,7 +109,7 @@ db.restaurantes.find({
 	}
 })
 ```
-Aí que você se engana. Nesse exemplo estamos dizendo o seguinte. Retornar todos os documentos onde a `grade` é "A" e `score` é maior que 23. 
+Aí que você se engana. Nesse exemplo estamos dizendo o seguinte. Retornar todos os documentos onde a `grade` é "A" e `score` é maior que 23.
 Não podemos esquecer que estamos fazendo uma busca em **Array**, nesse caso se apenas um elemento do array for diferente dos argumentos da `query` não teremos retorno.
 
 O **$elemMatch** retorna os documentos, se no caso um elemento for verdadeiro, ou seja, se um elemento entre cinco satisfazer o nosso critério de busca, esse documento será retornado.
@@ -86,8 +120,8 @@ Retorna todos os documentos na coleção, onde o número de elementos é especif
 
 **exemplo:**
 ```js
-db.restaurantes.find( { 
-	grades: { $size: 2 } 
+db.restaurantes.find( {
+	grades: { $size: 2 }
 } ).pretty();
 ```
 Nesse caso, foi retornado todos os documentos da coleção, onde na `grades` possui dois elementos no **array**.
