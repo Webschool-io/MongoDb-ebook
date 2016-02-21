@@ -63,12 +63,16 @@ Para listarmos nossas *databases* precisamos apenas executar o seguinte comando 
 
 ```
 show dbs
-local  0.078GB
+local  0.0GB
 ```
 
 E aparecerá a listagem das *databases* existentes.
 
-Perceba que o banco vazio `local` já tem `0.078GB` pré-alocado, o que dá algo em torno de 80MBs, ele faz isso para melhorar a perfomance na hora da busca e sempre garantir um espaço sequencial para a persistência.
+Em versões anteriores a atual(3.2.1) a storage engine layer do mongoDB pré alocava  `0.078GB` , o que dá algo em torno de 80MBs, ela fazia isso para melhorar a perfomance na hora da busca e sempre garantir um espaço sequencial para a persistência.
+
+Após a compra da Wired Trigger(WT) o MongoDB começou a evoluir na sua Storage Engine Layer melhorando o uso de espaço em disco e a performance.
+
+Sendo assim não se faz mais necessario a pré-alocação dos dados.
 
 Agora vamos criar o nosso banco para iniciar o nosso Instagram, execute o seguinte comando:
 
