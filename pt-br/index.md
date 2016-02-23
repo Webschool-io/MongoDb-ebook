@@ -6,24 +6,27 @@ Existe uma variedade de fatores para obtermos um bom desempenho para o nosso sis
 
 Há dois tipos de mecanismos de armazenamento principais em mongodb, e um deles é chamado de *MMAPv1* e o outro *WiredTiger*.
 
-##[MMAPv1](https://docs.mongodb.org/v3.0/core/mmapv1/#record-allocation-strategies)
-Se destaca em cargas de trabalho com inserções de alto volume, leitura e atualizações in-loco. MMAPv1 é o mecanismo de armazenamento padrão no MongoDB 3.0 e todas as versões anteriores. Em uma máquina *Unix* se digitarmos o comando **man mmap**, teremos a seguinte descrição **mmap -- allocate memory, or map files or devices into memory".**Para o Mongodb salvar os documentos dentro de arquivos, ele inicialmente aloca um arquivo grande em disco. Então o mongodb faz a chamada de sistema `mmap` para o mapeamento de memoria virtual do mesmo tamanho do arquivo. O sistema operacional decide qual página estará na memória, nesse caso quando fazemos uma leitura a um documento e esse documento se encontra na página da memória o mesmo é retornado, caso contrário em seguida o sistema busca no disco e leva até a memória, antes que possamos ter acesso.
-###[Power of 2 Sized Allocations](https://docs.mongodb.org/manual/storage/#power-of-2-allocation)
+##MMAPv1
+---
+Se destaca em cargas de trabalho com inserções de alto volume, leitura e atualizações in-loco. MMAPv1 é o mecanismo de armazenamento padrão no MongoDB 3.0 e todas as versões anteriores. Em uma máquina *Unix* se digitarmos o comando **man mmap**, teremos a seguinte descrição **mmap -- allocate memory, or map files or devices into memory".**Para o Mongodb salvar os documentos dentro de arquivos, ele inicialmente aloca um arquivo grande em disco. Então o mongodb faz a chamada de sistema `mmap` para o mapeamento de memoria virtual do mesmo tamanho do arquivo. O sistema operacional decide qual página estará na memória, nesse caso quando fazemos uma leitura a um documento e esse documento se encontra na página da memória o mesmo é retornado, caso contrário em seguida o sistema busca no disco e leva até a memória, antes que possamos ter acesso. Para mais informações sobre *MMAPv1* consulte a documentação [aqui](https://docs.mongodb.org/v3.0/core/mmapv1/#record-allocation-strategies).
+**Power of 2 Sized Allocations**
 *MongoDB 3.0* usa o poder de alocação de 2 tamanhos como a estratégia de alocação de registro padrão para **MMAPv1**. Com o poder da estratégia de alocação de 2 tamanhos, cada registro tem um tamanho em bytes que é uma potência de 2 (por exemplo, 32, 64, 128, 256, 512 ... 2MB). Para documentos com mais de 2 MB, a atribuição é arredondado para o múltiplo mais próximo de 2MB.
 
-**[WiredTiger](https://docs.mongodb.org/manual/core/wiredtiger/#document-level-concurrency)** por ser mais rápido, oferece algumas caracterisiticas interessantes e a primeira é a *simultaniedade a nivél de documento* de controle de concorrência para operações de gravação. Como resultado, vários clientes podem modificar diferentes documentos de uma coleção ao mesmo tempo, na verdade implementações livres de bloqueio. Outra caracteristica importante é a *compressão*. Por padrão, `WiredTiger` usa compressão para todas as coleções e índices. A compressão minimiza o uso do armazenamento à custa de CPU adicional. Portanto, se deseja iniciar o banco de dados com *wiredTiger*, usamos o seguinte comando:
+##WiredTiger
+---
+Por ser mais rápido, oferece algumas caracterisiticas interessantes e a primeira é a *simultaniedade a nivél de documento* de controle de concorrência para operações de gravação. Como resultado, vários clientes podem modificar diferentes documentos de uma coleção ao mesmo tempo, na verdade implementações livres de bloqueio. Outra caracteristica importante é a compressão. Por padrão, `WiredTiger` usa compressão para todas as coleções e índices. A compressão minimiza o uso do armazenamento à custa de CPU adicional. Portanto, se deseja iniciar o banco de dados com `wiredTiger`, usamos o seguinte comando:
 
 - Antes de iniciar o wiredTiger, certifique-se de parar o processo mongod.
-- Criamos um diretório `mkdir WT` para em seguinda apontar para o mesmo 
+- Criamos um diretório `mkdir WT` para em seguinda apontar para o mesmo
 - Em seguida iniciamos o mongod.
 
 **exemplo:**
-```js
+```javascript
 mongod --dbpath WT --storageEngine wiredTiger
 ```
 
 Depois de levantar o *mongod* com o comando acima, teremos o seguinte retorno:
-```js
+```javascript
 2016-02-22T13:10:46.009-0300 I CONTROL  [initandlisten] MongoDB starting : pid=7330 port=27017 dbpath=WT 64-bit host=Souza
 2016-02-22T13:10:46.009-0300 I CONTROL  [initandlisten] db version v3.0.8
 2016-02-22T13:10:46.010-0300 I CONTROL  [initandlisten] git version: 83d8cc25e00e42856924d84e220fbe4a839e605d
@@ -40,11 +43,11 @@ Depois de levantar o *mongod* com o comando acima, teremos o seguinte retorno:
 2016-02-22T13:10:46.998-0300 I CONTROL  [initandlisten]
 2016-02-22T13:10:47.424-0300 I NETWORK  [initandlisten] waiting for connections on port 27017
 ```
-Estamos iniciando o *mongod* com `wiregTiger` na porta 27017. 
+Estamos iniciando o *mongod* com `wiregTiger` na porta 27017.
 
 Agora vamos conectar no `mongo` e realizar um `insert`.
 
-```js
+```javascript
 mongo
 MongoDB shell version: 3.0.8
 connecting to: test
@@ -57,11 +60,11 @@ Server has startup warnings:
 2016-02-22T13:10:46.998-0300 I CONTROL  [initandlisten] ** WARNING: /sys/kernel/mm/transparent_hugepage/defrag is 'always'.
 2016-02-22T13:10:46.998-0300 I CONTROL  [initandlisten] **        We suggest setting it to 'never'
 2016-02-22T13:10:46.998-0300 I CONTROL  [initandlisten]
-``` 
+```
 Por padrão quando conectamos no *mongo* na porta 27017, que ja está configurada para o `wiredTiger`.
 
 Agora vamos realizar o `insert`, com o comando:
-```js
+```javascript
 db.teste.insert({name: "WiredTiger"});
 
 
@@ -73,16 +76,16 @@ WriteResult({
 Inserimos um documento baseado em `wiredTiger` o mecanismo de armazenamento do *mongodb*.
 
 Para saber se nossa coleção é baseada em wiredTiger, fazemos o seguinte comando.
-```js
+```javascript
 db.teste.stats();
 ```
 Conferindo o retorno do comando, teremos:
-```js
+```javascript
 {
   "ns": "test.teste",
   "count": 1,
   "size": 43,
-  "avgObjSize": 43,
+  "avgObjavascriptize": 43,
   "storageSize": 16384,
   "capped": false,
   "wiredTiger": {
@@ -92,31 +95,34 @@ Conferindo o retorno do comando, teremos:
  }
 }
 ```
-Com o resultado do método *stats()* e analisando o retorno temos algumas propriedade.
-- ns -> diz que a coleção `teste` pertence ao banco `test`. 
-- capped -> diz se a coleção é uma `capped collection`. Onde a coleção é do tamanho fixo.  
+Com o resultado do método *stats()* e analisando o retorno, temos algumas propriedade.
+- ns -> diz que a coleção `teste` pertence ao banco `test`.
+- capped -> diz se a coleção é uma `capped collection`. Onde a coleção é do tamanho fixo.
 - wiredTiger -> diz que é uma coleção `wiredTiger`.
 
+Consulte a documentação sobre `wiredTiger` [aqui]((https://docs.mongodb.org/manual/core/wiredtiger/#document-level-concurrency)).
+
 ##Create Index
+---
 O *index* é nosso aliado quando o assunto é desempenho na busca de dados em nossa *coleção*. Seja o `MMAPv1` ou `wiredTiger` o mecanismo de armazenamento utilizado em *mongodb*, podemos obter uma grande melhoría na busca de dados ao utilizar *índex*.
 
 Com operações de atualização e exclusão, onde você encontra o documento que deseja e, em seguida, executar uma escrita, temos a ajuda do índice quando realizamos a fase de consulta, mas não quando executamos a gravação.
 
-Os próximos exemplos iremos utilizar o banco *restaurantes*. Segue o [link](https://raw.githubusercontent.com/Webschool-io/MongoDb-ebook/master/src/data/restaurantes.json) para copiar os documentos e importar no seu banco de dados mongodb. 
+Os próximos exemplos iremos utilizar o banco *restaurantes*. Segue o [link](https://raw.githubusercontent.com/Webschool-io/MongoDb-ebook/master/src/data/restaurantes.javascripton) para copiar os documentos e importar no seu banco de dados mongodb.
 
 Iremos fazer uma consulta com o seguinte comando:
-```js
+```javascript
 db.restaurantes.find({cuisine: "Bakery"}).explain('executionStats');
 ```
 Estou utilizando uma **versão mongodb anterior da 3.2.**
 Na versão mongodb 3.2 o comando seria o seguinte:
-```js
+```javascript
 db.restaurantes.explain('executionStats').find({cuisine: "Bakery"});
-``` 
- 
+```
+
 Estamos fazendo um *find()* na coleção `restaurantes` onde a cuisine é `Bakery` e exibindo nossa `explain`, exibindo o plano de consulta.
 
-```js
+```javascript
 {
   "queryPlanner": {
     "plannerVersion": 1,
@@ -186,27 +192,27 @@ Estamos fazendo um *find()* na coleção `restaurantes` onde a cuisine é `Baker
   "ok": 1
 }
 ```
-Com o retorno, podemos perceber no plano de consulta as seguintes propriedade: 
+Com o retorno, podemos perceber no plano de consulta as seguintes propriedade:
 
-- "COLLSCAN" -> nossa consulta passou por todos os dumentos da nossa coleção.  
-- "parsedQuery" -> informações da consulta, consulta analisada.
-- "Filter" -> nosso filtro da busca.
-- "totalDocsExamined" -> total de documentos analisados.
-- "totalKeysExamined" -> total de Keys examinados, nesse caso quando temos índices aplicados.
-- "nReturned" -> numero de documento retornado na consulta.
+1. "COLLSCAN" - nossa consulta passou por todos os dumentos da nossa coleção.
+2. "parsedQuery" - informações da consulta, consulta analisada.
+3. "Filter" - nosso filtro da busca.
+4. "totalDocsExamined" - total de documentos analisados.
+5. "totalKeysExamined" - total de Keys examinados, nesse caso quando temos índices aplicados.
+6. "nReturned" - numero de documento retornado na consulta.
 
-*Resumindo*. Temos em nossa coleção `restaurantes` um total de 25359 documentos. Ao exibir o plano de consulta, foi feito uma varredura em nossa coleção passando em cada documento e comparando se a `cuisine` é igual `Bakery`. Com isso foi retornado 691 documentos. 
+*Resumindo*. Temos em nossa coleção `restaurantes` um total de 25359 documentos. Ao exibir o plano de consulta, foi feito uma varredura em nossa coleção passando em cada documento e comparando se a `cuisine` é igual `Bakery`. Com isso foi retornado 691 documentos.
 
 Podemos melhorar a busca aplicando um `índice` na propriedade que passamos por paramento, nesse caso `cuisine`.
 
 Com o seguinte comando aplicamos um índex na propriedade cuisine, copie e cole no seu terminal.
-```js
+```javascript
 db.restaurantes.createIndex({cuisine: 1});
 ```
 Na criação do índex passei o valor **1** e estou dizendo que quero **indexar** essa propriedade na ordem crescente e na se fosse **-1** seria ordem decrescente.
 
-retorno da criação do índex
-```js
+retorno:
+```javascript
 {
   "createdCollectionAutomatically": false,
   "numIndexesBefore": 1,
@@ -217,7 +223,7 @@ retorno da criação do índex
 Por padrão no mongodb o **_id** já possue um índice, nesse caso temos dois índices aplicado na nossa coleção `restaurantes`.
 
 Com o comando abaixo, vamos imprimir os index criado em nossa coleção.
-```js
+```javascript
 db.system.indexes.find()
 {
   "v": 1,
@@ -244,11 +250,11 @@ Temos as seguintes descrições para o `stage` quando executamos o método *expl
 - **SHARD_MERGE** para mesclar os resultados dos *shard*
 
 Depois de criado o `índex`, vamos analisar a diferença executando a consulta abaixo
-```js
+```javascript
 db.restaurantes.explain('executionStats').find({cuisine: "Bakery"});
 ```
-retorno
-```js
+retorno:
+```javascript
 {
   {nner": {
     "plannerVersion": 1,
@@ -337,9 +343,9 @@ retorno
   },
   "ok": 1
 }
-``` 
+```
 Com o retorno, podemos analisar o seguinte:
-Em `totalKeysExamined` tivemos 691 chaves examinadas, na consulta anterior o resultado era 0. 
+Em `totalKeysExamined` tivemos 691 chaves examinadas, na consulta anterior o resultado era 0.
 Foi feito uma procura pelo index criado, como mostra a propriedade `stage`, **IXSCAN**.
 Podemos perceber que o tempo de execução da consulta `executionTimeMillis` melhorou em realação a consulta anterior.
 
@@ -347,7 +353,9 @@ Podemos perceber que o tempo de execução da consulta `executionTimeMillis` mel
 
 O *index* é o nosso aliado quando o assunto é perfomance na busca de dados. Para mais informações procure a documentação do [mongodb](https://docs.mongodb.org/manual/tutorial/create-an-index/).
 
-Próximo post vou falar sobre *Full text search*. Como funciona no mongodb uma simples procura por texto e também falar um pouco mais a respeito dos operadores $regex, $text, $search e a criação de ensureIndex() para a melhoria na procura das palavras. Clique [aqui](https://github.com/Webschool-io/MongoDb-ebook/blob/master/pt-br/full_text_search.md) para o próximo post.
+Próximo post vou falar sobre *Full text search*. Como funciona no mongodb uma simples procura por texto e também falar um pouco mais a respeito dos operadores $regex, $text, $search e a criação de ensureIndex() para a melhoria na procura das palavras. Clique [aqui](./pt-br/full_text_search.md) para o próximo post.
 
 ##Referência
 -[Documentação Mongodb](https://docs.mongodb.org/manual/indexes/)
+
+[logo]: https://github.com/adam-p/markdown-here/blob/master/src/common/images/icon19-button.png
