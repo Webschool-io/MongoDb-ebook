@@ -1,5 +1,5 @@
 ##Index
-
+---
 Existe uma variedade de fatores para obtermos um bom desempenho para o nosso sistema. Desempenho de hardware como, cpu, disco e a memoria. Para obter impacto a latência e taxa de transferência na consulta de banco de dados, temos duas possibilidades que são:
  - Adicionar *índixes* a nossa coleção.
  - Distribuir a carga em vários servidores, implementando *sharding*.
@@ -96,9 +96,9 @@ Conferindo o retorno do comando, teremos:
 }
 ```
 Com o resultado do método *stats()* e analisando o retorno, temos algumas propriedade.
-- ns -> diz que a coleção `teste` pertence ao banco `test`.
-- capped -> diz se a coleção é uma `capped collection`. Onde a coleção é do tamanho fixo.
-- wiredTiger -> diz que é uma coleção `wiredTiger`.
+1. ns - diz que a coleção `teste` pertence ao banco `test`.
+2. capped - diz se a coleção é uma `capped collection`. Onde a coleção é do tamanho fixo.
+3. wiredTiger - diz que é uma coleção `wiredTiger`.
 
 Consulte a documentação sobre `wiredTiger` [aqui]((https://docs.mongodb.org/manual/core/wiredtiger/#document-level-concurrency)).
 
