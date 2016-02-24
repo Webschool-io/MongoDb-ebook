@@ -260,4 +260,4 @@ Próximo post vou falar sobre *Full text search*. Como funciona no mongodb uma s
 ##Referência
 -[Documentação Mongodb](https://docs.mongodb.org/manual/indexes/)
 
-[logo]: https://github.com/adam-p/markdown-here/blob/master/src/common/images/icon19-button.png "Ebook MongoDB"
+[logo]: ./src/images/seta.png "Ebook MongoDB"
