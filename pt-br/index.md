@@ -6,11 +6,11 @@ Existe uma variedade de fatores para obtermos um bom desempenho para o nosso sis
 
 ##Create Index
 ---
-O *index* é nosso aliado quando o assunto é desempenho na busca de dados em nossa *coleção*. Seja o *[MMAPv1](https://docs.mongodb.org/v3.0/core/mmapv1/)* ou *[wiredTiger](https://docs.mongodb.org/manual/core/wiredtiger/)*  mecanismo de armazenamento utilizado em *mongodb*, podemos obter uma grande melhoría na busca de dados ao utilizar *índex*.
+O *index* é nosso aliado quando o assunto é desempenho na busca de dados em nossa *coleção*. Seja o *![MMAPv1](https://docs.mongodb.org/v3.0/core/mmapv1/)* ou *![wiredTiger](https://docs.mongodb.org/manual/core/wiredtiger/)*  mecanismo de armazenamento utilizado em *mongodb*, podemos obter uma grande melhoría na busca de dados ao utilizar *índex*.
 
 Com operações de atualização e exclusão, onde você encontra o documento que deseja e, em seguida, executar uma escrita, temos a ajuda do índice quando realizamos a fase de consulta, mas não quando executamos a gravação.
 
-Os próximos exemplos iremos utilizar o banco *restaurantes*. Segue o [link](https://raw.githubusercontent.com/Webschool-io/MongoDb-ebook/master/src/data/restaurantes.javascripton) para copiar os documentos e importar no seu banco de dados mongodb.
+Os próximos exemplos iremos utilizar o banco *restaurantes*. Segue o ![link](https://raw.githubusercontent.com/Webschool-io/MongoDb-ebook/master/src/data/restaurantes.javascripton) para copiar os documentos e importar no seu banco de dados mongodb.
 
 Iremos fazer uma consulta com o seguinte comando:
 ```javascript
@@ -155,7 +155,7 @@ Depois de criado o `índex`, vamos analisar a diferença executando a consulta a
 ```javascript
 db.restaurantes.explain('executionStats').find({cuisine: "Bakery"});
 ```
-retorno: ![alt text][logo]
+retorno: [alt text][logo]
 ```javascript
 {
   {nner": {
@@ -253,11 +253,11 @@ Podemos perceber que o tempo de execução da consulta `executionTimeMillis` mel
 
 **Pronto!!!**
 
-O *index* é o nosso aliado quando o assunto é perfomance na busca de dados. Para mais informações procure a documentação do [mongodb](https://docs.mongodb.org/manual/tutorial/create-an-index/).
+O *index* é o nosso aliado quando o assunto é perfomance na busca de dados. Para mais informações procure a documentação do ![mongodb](https://docs.mongodb.org/manual/tutorial/create-an-index/).
 
 Próximo post vou falar sobre *Full text search*. Como funciona no mongodb uma simples procura por texto e também falar um pouco mais a respeito dos operadores $regex, $text, $search e a criação de ensureIndex() para a melhoria na procura das palavras. Clique [aqui](./full_text_search.md) para o próximo post.
 
 ##Referência
--[Documentação Mongodb](https://docs.mongodb.org/manual/indexes/)
+- ![Documentação Mongodb](https://docs.mongodb.org/manual/indexes/)
 
-[logo]: https://github.com/adam-p/markdown-here/blob/master/src/common/images/icon19-button.png
+[logo]: https://github.com/adam-p/markdown-here/blob/master/src/common/images/icon19-button.png "Ebook Mongodb"
