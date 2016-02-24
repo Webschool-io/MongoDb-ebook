@@ -96,7 +96,7 @@ Com o resultado do método *stats()* e analisando o retorno, temos algumas propr
 2. capped - diz se a coleção é uma `capped collection`. Onde a coleção é do tamanho fixo.
 3. wiredTiger - diz que é uma coleção `wiredTiger`.
 
-Consulte a documentação sobre `wiredTiger` [aqui]((https://docs.mongodb.org/manual/core/wiredtiger/#document-level-concurrency)).
+Consulte a documentação sobre `wiredTiger` [aqui](https://docs.mongodb.org/manual/core/wiredtiger/#document-level-concurrency).
 
 ##Referência
 -[Documentação Mongodb](https://docs.mongodb.org/manual/)
