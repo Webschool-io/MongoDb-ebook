@@ -21,7 +21,7 @@ Por ser mais rápido, oferece algumas caracterisiticas interessantes e a primeir
 mongod --dbpath WT --storageEngine wiredTiger
 ```
 
-Depois de levantar o *mongod* com o comando acima, teremos o seguinte retorno:
+Depois de levantar o *mongod* com o comando acima, teremos o seguinte retorno: ![alt text][logo]
 ```javascript
 2016-02-22T13:10:46.009-0300 I CONTROL  [initandlisten] MongoDB starting : pid=7330 port=27017 dbpath=WT 64-bit host=Souza
 2016-02-22T13:10:46.009-0300 I CONTROL  [initandlisten] db version v3.0.8
@@ -97,3 +97,8 @@ Com o resultado do método *stats()* e analisando o retorno, temos algumas propr
 3. wiredTiger - diz que é uma coleção `wiredTiger`.
 
 Consulte a documentação sobre `wiredTiger` [aqui]((https://docs.mongodb.org/manual/core/wiredtiger/#document-level-concurrency)).
+
+##Referência
+-[Documentação Mongodb](https://docs.mongodb.org/manual/)
+
+[logo]: https://github.com/souzacristsf/MongoDb-ebook/blob/master/src/images/seta.png "Ebook MongoDB"

@@ -113,7 +113,7 @@ db.restaurantes.createIndex({cuisine: 1});
 ```
 Na criação do índex passei o valor **1** e estou dizendo que quero **indexar** essa propriedade na ordem crescente e na se fosse **-1** seria ordem decrescente.
 
-retorno:
+retorno: ![alt text][logo]
 ```javascript
 {
   "createdCollectionAutomatically": false,
@@ -260,4 +260,4 @@ Próximo post vou falar sobre *Full text search*. Como funciona no mongodb uma s
 ##Referência
 -[Documentação Mongodb](https://docs.mongodb.org/manual/indexes/)
 
-[logo]: ./src/images/seta.png "Ebook MongoDB"
+[logo]: https://github.com/souzacristsf/MongoDb-ebook/blob/master/src/images/seta.png "Ebook MongoDB"
