@@ -33,14 +33,20 @@ echo "deb http://repo.mongodb.org/apt/ubuntu trusty/mongodb-org/3.0 multiverse" 
 Ubuntu 15:
 
 ```
-echo "deb http://repo.mongodb.org/apt/debian wheezy/mongodb-org/3.0 main" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.0.list"
+echo "deb http://repo.mongodb.org/apt/debian wheezy/mongodb-org/3.0 main" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.0.list
+```
+
+Ubuntu 16:
+
+```
+echo "deb http://repo.mongodb.org/apt/ubuntu trusty/mongodb-org/3.2 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.2.list
 ```
 
 Por fim, rodar o comando:
 
 ```
 sudo apt-get update
-sudo apt-get install -y mongodb-org
+sudo apt-get install -y --allow-unauthenticated mongodb-org
 ```
 Se o teu OS for um Debian ou Ubuntu 32 bits, siga estes passos: [Install MongoDB on Ubuntu - Docs MongoDB](https://docs.mongodb.org/manual/tutorial/install-mongodb-on-ubuntu/)
 
