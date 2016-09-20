@@ -160,7 +160,7 @@ Nesse caso já entramos com a *database* `be-mean-instagram` que será a base ut
 
 ## Versão
 
-Para você garantir que a verão 3 está instalada basta executar o seguinte comando:
+Para você garantir que a versão 3 está instalada basta executar o seguinte comando:
 
 ```
 mongod --version
