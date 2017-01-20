@@ -47,6 +47,6 @@ Então, é isso aí e até a próxima!!!!
 
 Proxímos post [clique aqui]().
 
-##Referências
-1 - [Documentação MongoDB Geospatial](https://docs.mongodb.com/manual/reference/operator/query-geospatial/)
+##Referências   
+1 - [Documentação MongoDB Geospatial](https://docs.mongodb.com/manual/reference/operator/query-geospatial/)     
 2 - [Geospatial Indexes](https://docs.mongodb.com/manual/applications/geospatial-indexes/#geospatial-indexes)
