@@ -8,7 +8,7 @@ Vou ajudar a dar continuidade nesse grande Ebook sobre `Mongodb` e vou começar 
 
 Primeiramente, acredito que você já tenha o Mongodb instalado na sua maquina, caso não tenha instalado aproveita e [clique aqui](https://docs.mongodb.com/manual/), e baixe a nova versão. Estarei usando a versão MongoDB 3.2.
 
-Usarei esse [site](http://geojson.io/#map=17/-15.93847/-47.59879) (Essa coordenada está no estado de Brasilia), como guia para pegar as coordenadas que irei utilizar junto com o dados [Pokemons](/MongoDb-ebook/blob/master/src/data/pokemons.json) que já temos de outros posts.
+Usarei esse [site](http://geojson.io/#map=17/-15.93847/-47.59879) (Essa coordenada está no estado de Brasilia), como guia para pegar as coordenadas que irei utilizar junto com o dados [Pokemons](blob/master/src/data/pokemons.json) que já temos de outros posts.
 
 ### Superfície 
 Antes de armazenar seus dados de localização e consultas de escrita, você deve decidir o tipo de superfície a ser usada para executar cálculos. O tipo que você escolher afeta como você armazenar dados, que tipo de índice para construir, e a sintaxe de suas consultas.
