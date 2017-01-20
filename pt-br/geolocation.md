@@ -45,7 +45,7 @@ Não vou me estender muito, para não ficar desmotivador esse aprendizado.
 
 Então, é isso aí e até a próxima!!!!
 
-Proxímos post [clique aqui]().
+Proxímos post [clique aqui](/geolocation/geospatial-types.md).
 
 ##Referências   
 1 - [Documentação MongoDB Geospatial](https://docs.mongodb.com/manual/reference/operator/query-geospatial/)     
