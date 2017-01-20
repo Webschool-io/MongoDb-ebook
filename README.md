@@ -18,7 +18,7 @@ Nesse ebook será abordada a versão acima da 3.0.
     + [find](./pt-br/find-findOne.md)
     + [findOne](./pt-br/find-findOne.md)
     + [findAndModify](./pt-br/find-findAndModify.md)
-    + [findOneAndUpdate](./pt-br/find-findOneAndUpdate.md)
+    + [findOneAndUpdate](./pt-br/find-findAndUpdate.md)
     + [findOneAndReplace](./pt-br/find-findOneAndReplace.md)
     + [findOneAndDelete](./pt-br/find-findOneAndDelete.md)
     + [update](./pt-br/update.md)
