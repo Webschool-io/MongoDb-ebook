@@ -195,6 +195,8 @@ Aprendemos alguns tipos de objetos GeoJSON que podemos armazenar no **MongoDB**.
 
 Lembrando que teremos para cada tipo de objetos GeoJSON um índice, seja ele `2dsphere` ou `2d`.
 
+Nos proximos post veremos os operadores que precisamos para trabalhar com Geospatial. Teremos muita mão na massa e alguns exemplo para executar e aprendermos melhor.
+
 Participe, você pode nos ajudar também mandando algumas correções nesse Ebook MongoDB de Ortografia ou escrevendo algo novo. :)
 
 Então, é isso aí e até a próxima!!!!
