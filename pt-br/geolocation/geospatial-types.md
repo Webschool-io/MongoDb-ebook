@@ -160,7 +160,7 @@ Para o tipo "MultiLineString", o "coordinates"membro deve ser uma matriz de Line
   ]
 }
 ```
-![](/src/images/multipolygon.png)
+![](/src/images/multipolygon.png)   
 Exemplo lindo de `MultiPolygon` utilizando Geospatial.
 
 ### GeometryCollection
