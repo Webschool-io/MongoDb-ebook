@@ -201,7 +201,7 @@ Participe, você pode nos ajudar também mandando algumas correções nesse Eboo
 
 Então, é isso aí e até a próxima!!!!
 
-Proxímos post [clique aqui](/pt-br/geolocation/geospatial-types.md).
+Proxímos post [clique aqui](/pt-br/geolocation/geospatial-query-operator.md).
 
 ##Referências  
 1 - [Geospatial Types](https://docs.mongodb.com/manual/reference/geojson/#linestring)
