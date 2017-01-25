@@ -2,6 +2,7 @@
 
 
 O MongoDb é um banco e dados NoSQL open-source e orientado a documentos JSON. Ele foi criado para ser escalado horizontalmente, conceito que veremos mais a frente.
+
 Nesse ebook será abordada a versão acima da 3.0.
 
 ## Índice
@@ -16,12 +17,15 @@ Nesse ebook será abordada a versão acima da 3.0.
     + [save](./pt-br/save.md)
     + [find](./pt-br/find-findOne.md)
     + [findOne](./pt-br/find-findOne.md)
+    + [findAndModify](./pt-br/find-findAndModify.md)
+    + [findOneAndUpdate](./pt-br/find-findAndUpdate.md)
+    + [findOneAndReplace](./pt-br/find-findOneAndReplace.md)
+    + [findOneAndDelete](./pt-br/find-findOneAndDelete.md)
     + [update](./pt-br/update.md)
     + [remove](./pt-br/remove.md)
     + [drop](./pt-br/drop.md)
-    + [Paginação](./pt-br/pagination.md)
+    + [Paginação](./pt-br/paggination.md)
 - [Aggregation](./pt-br/aggregation.md)
-- [Group](./pt-br/group.md)
 - [Replica](./pt-br/replica.md)
 - [Sharding](./pt-br/sharding.md)
 - [GridFs](./pt-br/gridfs.md)
