@@ -60,7 +60,7 @@ Como estamos fazendo para testar iremos criar apenas 1, **porém a indicação o
 Depois disso precisamos criar o *Router* utilizando o `mongos`, setando o *Config Server* que ele acessará para ter as informações dos *Shards*.
 
 ```
-mongos -c-onfigdb localhost:27010 --port 27011
+mongos --configdb localhost:27010 --port 27011
 ```
 
 Quando rodar você verá o começo das mensagens assim:

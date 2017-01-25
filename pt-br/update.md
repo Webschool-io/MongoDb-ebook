@@ -280,6 +280,8 @@ WriteResult({
 
 ### $pushAll
 
+[DEPRECIADO](https://docs.mongodb.org/v3.0/reference/operator/update/pushAll/) (Usar [$each](#each))
+
 O operador `$pushAll` adiciona cada valor do `[Array_de_valores]`, caso o **campo seja um *Array* existente**. Caso **não exista irá criar o campo novo, do tipo *Array* com o valor passado** no `$pushAll`.
 Caso o **campo exista e não for um *Array*, irá retornar um erro**.
 
@@ -383,7 +385,7 @@ Caso o **campo exista e não for um *Array*, irá retornar um erro**.
 #### Sintaxe
 
 ```
-{ $pullALl : { campo : valor } }
+{ $pullAll : { campo : valor } }
 ```
 
 #### Uso
@@ -401,6 +403,170 @@ WriteResult({
   "nUpserted": 0,
   "nModified": 1
 })
+```
+
+### $addToSet
+
+O operador `$addToSet` adiciona um valor ao campo, caso o **campo seja um *Array* existente**. Caso o valor já esteja presente não vai adicionar o valor, o operador garante que o valor não vai ser adicionado caso ele já exista no campo. 
+Caso o campo exista e não for um Array, irá retornar um erro.
+
+#### Uso
+
+Vamos deixar o Pikachu com `choque do trovão`. Agora vamos adicionar o ataque `choque elétrico` usando o `$addToSet`.  
+
+```
+var mod = { $addToSet : { moves : "choque elétrico" } }
+db.pokemons.update(query, mod)
+Updated 1 existing record(s) in 1ms
+WriteResult({
+  "nMatched": 1,
+  "nUpserted": 0,
+  "nModified": 1
+})
+
+```
+
+Vamos ver como ficou: 
+
+```
+db.pokemons.find(query)
+{
+  "_id": ObjectId("56422c36613f89ac53a7b5d5"),
+  "name": "Pikachu",
+  "description": "Rato elétrico bem fofinho",
+  "type": "electric",
+  "attack": 55,
+  "height": 0.4,
+  "moves": [
+    "choque do trovão",
+    "choque elétrico"
+  ]
+}
+```
+Igual ao $push né? Agora vamos tentar adicionar esse ataque novamente.
+
+```
+db.pokemons.update(query, mod)
+Updated 1 existing record(s) in 1ms
+WriteResult({
+  "nMatched": 1,
+  "nUpserted": 0,
+  "nModified": 0
+})
+```
+
+Perceba como `nModified` está 0. Ele não alterou o array `moves`. Mas e se fosse o `$push`?
+
+```
+var mod = { $push : { moves : "choque elétrico" } }
+db.pokemons.update(query, mod)
+Updated 1 existing record(s) in 1ms
+WriteResult({
+  "nMatched": 1,
+  "nUpserted": 0,
+  "nModified": 1
+})
+
+```
+
+O Pikachu vai ficar com duplicidade em `choque elétrico` e fica assim:
+
+```
+db.pokemons.find(query)
+{
+  "_id": ObjectId("56832c197ecdbeff48ee7b5d"),
+  "name": "Pikachu",
+  "description": "Rato elétrico.",
+  "type": "Eletric",
+  "attack": 30,
+  "defense": 20,
+  "height": 0.4,
+  "moves": [
+    "choque do trovão",
+    "choque elétrico",
+    "choque elétrico"
+  ]
+}
+```
+### $each
+
+O modificador `$each` pode ser usado com `$addToSet` e com o operador `$push`. 
+Como o operador `$pushAll` foi depreciado, agora utiliza-se `$each` para adicionar multiplos valores ao campo. E com o `$addToSet` adicionar o multiplos valores que não existem no campo. 
+
+#### Sintaxe 
+
+```
+{ $push : { campo : {$each: [Array_de_valores] } } }
+```
+
+```
+{ $addToSet: {campo : {$each: [Array_de_valores] } } } 
+```
+
+#### Uso
+
+Vamos adicionar 3 novos ataques ao Pikachu, para isso criamos um *Array* para seus valores e logo após passamos ele para o `$push`:
+
+```
+var attacks = ['choque elétrico', 'ataque rápido', 'bola elétrica']
+var mod = {$push : {moves : {$each: attacks} } }
+db.pokemons.update(query, mod)
+
+Updated 1 existing record(s) in 29ms
+WriteResult({
+  "nMatched": 1,
+  "nUpserted": 0,
+  "nModified": 1
+})
+```
+Vamos conferir a modificação.
+
+```
+db.pokemons.find(query)
+{
+  "_id": ObjectId("56422c36613f89ac53a7b5d5"),
+  "name": "Pikachu",
+  "description": "Rato elétrico bem fofinho",
+  "type": "eletric",
+  "attack": 55,
+  "height": 0.4,   
+  "moves": [
+    "investida",
+    "choque do trovão",
+    "choque elétrico",
+    "ataque rápido",
+    "bola elétrica"
+  ]
+}
+```
+
+Vamos remover os ataques de `moves` deixando apenas `investida`. E usar o operador  `$addToSet` com `$each` para adicionar 4 ataques.
+
+```
+var attacks = ['investida', 'choque elétrico', 'ataque rápido', 'bola elétrica']
+var mod = {$addToSet : { moves: { $each: attacks } } }
+```
+
+Olha como ficou o Pikachu. Não adicionou o `investida`.
+
+```
+db.pokemons.find(query)
+{
+  "_id": ObjectId("56832c197ecdbeff48ee7b5d"),
+  "name": "Pikachu",
+  "description": "Rato elétrico.",
+  "type": "Eletric",
+  "attack": 30,
+  "defense": 20,
+  "height": 0.4,
+  "moves": [
+    "investida",
+    "choque elétrico",
+    "ataque rápido",
+    "bola elétrica"
+  ]
+}
+
 ```
 
 ### options

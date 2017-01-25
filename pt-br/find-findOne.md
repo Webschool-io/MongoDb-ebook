@@ -13,7 +13,7 @@ Mesmo você buscando diretamente com o `_id`
 
 Esse `_id` que vocês devem ter visto nos registros inseridos nada mais é que um [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier).
 
-Ele também é conhecido como `ObjectId` e ele é um tipo do BSON de 12-bytes, cconstruído usando:
+Ele também é conhecido como `ObjectId` e ele é um tipo do BSON de 12-bytes, construído usando:
 
 4-bytes: valor que representa os segundos desde a época Unix;
 3-bytes: identificador de máquina;

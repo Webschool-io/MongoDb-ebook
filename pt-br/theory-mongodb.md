@@ -21,8 +21,8 @@ Capped Collection são coleções de tamanho fixo que suportam as operações de
 
  - **Capped Collection tem os seguintes comportamentos:**
 
-     - Capped Collection garanti a preservação da ordem de inserção. Como resultado, as consultas não precisam de um índice para devolver os documentos em ordem de inserção. Sem essa sobrecarga de indexação, eles podem apoiar um maior rendimento de inserção.
-     - Capped Collection garanti que a ordem de inserção é idêntica à ordem no disco (ordem natural) e faz isso através da proibição de atualizações que aumentam o tamanho do documento. Capped Collection só permite atualizações que se encaixam no tamanho do documento original, o que garante que o documento não altere a sua localização no disco.
+     - Capped Collection garante a preservação da ordem de inserção. Como resultado, as consultas não precisam de um índice para devolver os documentos em ordem de inserção. Sem essa sobrecarga de indexação, eles podem apoiar um maior rendimento de inserção.
+     - Capped Collection garante que a ordem de inserção é idêntica à ordem no disco (ordem natural) e faz isso através da proibição de atualizações que aumentam o tamanho do documento. Capped Collection só permite atualizações que se encaixam no tamanho do documento original, o que garante que o documento não altere a sua localização no disco.
      - Capped Collection remove automaticamente os documentos mais antigos da coleção sem a necessidade de scripts ou operações de remoção explícitas.
 
 fonte: [http://docs.mongodb.org/manual/core/capped-collections](http://docs.mongodb.org/manual/core/capped-collections)

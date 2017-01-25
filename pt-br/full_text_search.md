@@ -1,0 +1,1 @@
+clarecer como funciona no mongodb uma simples procura por texto e também falar um pouco mais a repeito dos operadores $regex, $text, $search e a criação de ensureIndex() para a melhoria na procura das palavras.
