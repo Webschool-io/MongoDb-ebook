@@ -7,7 +7,7 @@ Um agrupamento pode ser feito com um [operador aritimético](https://docs.mongod
 * Adição `$add`
 * Arredondamento "para baixo" `$ceil`
 * Arredondamento "para cima" `$floor`
-* Truncar para inteiro `$trunc` sem arredondar
+* Truncar para inteiro `$trunc` sem arredondar  
 * dentre outros
 
 Com um [acumulador](https://docs.mongodb.org/manual/reference/operator/aggregation-group/):
