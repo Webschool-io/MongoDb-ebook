@@ -1,9 +1,8 @@
 # MongoDB
 
-The MongoDb is an database NoSQL open-source document-oriented JSON. it was created for to be  scaled horizontally, concept that we'll see more front
+Nesse curso abordarei a versão 3.0 do MongoDB.
 
-
-this ebook will cover versions above 3.0 of MongoDb
+O MongoDb é um banco e dados NoSQL open-source e orientado a documentos JSON. Ele foi criado para ser escalado horizontalmente, conceito que veremos mais a frente.
 
 ## index
 
