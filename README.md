@@ -1,16 +1,17 @@
 # MongoDB
 
+
 O MongoDb é um banco e dados NoSQL open-source e orientado a documentos JSON. Ele foi criado para ser escalado horizontalmente, conceito que veremos mais a frente.
 
-Nesse curso abordarei a versão 3.0 do MongoDB.
+Nesse ebook será abordada a versão acima da 3.0.
 
-## index
+## Índice
 
-- [Theory](./pt-br/theory.md)
+- [Teoria](./pt-br/theory.md)
     - [NoSQL](./pt-br/theory-nosql.md)
     - [MongoDB](./pt-br/theory-mongodb.md)
-- [Installation](./pt-br/installation.md)
-- [Client](./pt-br/mongodb-client.md)
+- [Instalação](./pt-br/installation.md)
+- [Cliente](./pt-br/mongodb-client.md)
 - [CRUD](./pt-br/crud.md)
     + [insert](./pt-br/insert.md)
     + [save](./pt-br/save.md)
@@ -23,7 +24,7 @@ Nesse curso abordarei a versão 3.0 do MongoDB.
     + [update](./pt-br/update.md)
     + [remove](./pt-br/remove.md)
     + [drop](./pt-br/drop.md)
-    + [pagination](./pt-br/paggination.md)
+    + [Paginação](./pt-br/paggination.md)
 - [Aggregation](./pt-br/aggregation.md)
 - [Replica](./pt-br/replica.md)
 - [Sharding](./pt-br/sharding.md)
